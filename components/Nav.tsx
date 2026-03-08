@@ -2,18 +2,31 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { NAV } from '@/lib/content'
 
 export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  const isActive = (href: string) => {
+    if (!href.startsWith('/')) return false
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   return (
     <header
@@ -44,10 +57,18 @@ export default function Nav() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-slate-300 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 relative group"
+              className={`text-sm font-medium tracking-wide transition-colors duration-200 relative group ${
+                isActive(link.href)
+                  ? 'text-white'
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
               {link.label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-200" />
+              <span
+                className={`absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-200 ${
+                  isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+              />
             </Link>
           ))}
         </nav>
@@ -81,7 +102,11 @@ export default function Nav() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-slate-200 hover:text-white text-base font-medium py-3 px-2 border-b border-white/6 hover:bg-white/5 rounded transition-colors"
+                className={`text-base font-medium py-3 px-2 border-b border-white/6 rounded transition-colors ${
+                  isActive(link.href)
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-200 hover:text-white hover:bg-white/5'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}

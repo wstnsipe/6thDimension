@@ -1,29 +1,106 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { HERO } from '@/lib/content'
 
+// ─── Slideshow images ────────────────────────────────────────────────────────
+const HERO_IMAGES = [
+  {
+    src: '/images/hero/hero-1.jpg',
+    alt: 'Defense aviation simulation environment',
+  },
+  {
+    src: '/images/hero/hero-2.jpg',
+    alt: 'Army aviation mission systems',
+  },
+  {
+    src: '/images/hero/hero-3.jpg',
+    alt: 'Software engineering for DoD programs',
+  },
+]
+
+const INTERVAL_MS = 5000 // time each image is shown
+const FADE_MS     = 1000 // crossfade duration
+
+// ─── Stat strip (unchanged from original) ────────────────────────────────────
 const stats = [
   { value: '25+', label: 'Years in Defense Software' },
-  { value: 'DoD', label: 'Programs Supported' },
-  { value: 'AFRL', label: 'Platform Deployed' },
+  { value: 'DoD',  label: 'Programs Supported'       },
+  { value: 'AFRL', label: 'Platform Deployed'        },
 ]
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen flex items-center bg-navy-900 overflow-hidden">
+  const [activeIndex, setActiveIndex] = useState(0)
 
-      {/* Background layers */}
-      <div className="absolute inset-0 hero-grid" />
-      <div className="absolute inset-0 hero-glow-tr pointer-events-none" />
-      <div className="absolute inset-0 hero-glow-bl pointer-events-none" />
+  // Advance to the next image every INTERVAL_MS milliseconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % HERO_IMAGES.length)
+    }, INTERVAL_MS)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+
+      {/* ── Background image layers — crossfade via opacity ──────────── */}
+      {HERO_IMAGES.map((image, index) => (
+        <div
+          key={image.src}
+          aria-hidden="true"
+          className="absolute inset-0 transition-opacity ease-in-out"
+          style={{
+            opacity: index === activeIndex ? 1 : 0,
+            transitionDuration: `${FADE_MS}ms`,
+          }}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className="object-cover object-center"
+            priority={index === 0}
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* ── Dark overlay — keeps text legible over any photo ─────────── */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-navy-900/68"
+      />
+
+      {/* ── Decorative layers (grid + blue accent glow) ──────────────── */}
+      <div aria-hidden="true" className="absolute inset-0 hero-grid opacity-20 pointer-events-none" />
+      <div aria-hidden="true" className="absolute top-0 right-0 w-1/2 h-2/3 hero-glow-tr opacity-20 pointer-events-none" />
 
       {/* Right-edge vertical accent */}
-      <div className="absolute right-0 inset-y-0 w-px bg-gradient-to-b from-transparent via-accent/25 to-transparent" />
+      <div className="absolute right-0 inset-y-0 w-px bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
 
       {/* Subtle horizontal texture line */}
-      <div className="absolute left-0 right-0 top-[42%] h-px bg-gradient-to-r from-transparent via-white/[0.035] to-transparent" />
+      <div className="absolute left-0 right-0 top-[42%] h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
 
-      {/* Content */}
+      {/* ── Slide indicators ─────────────────────────────────────────── */}
+      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+        {HERO_IMAGES.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            className={`transition-all duration-300 rounded-full ${
+              index === activeIndex
+                ? 'w-6 h-1.5 bg-accent'
+                : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* ── Content ──────────────────────────────────────────────────── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 pt-36 pb-28 lg:pt-44">
         <div className="max-w-[880px]">
 
@@ -52,7 +129,7 @@ export default function Hero() {
           </h1>
 
           {/* Body copy */}
-          <p className="animate-fade-in-up delay-200 mt-8 text-slate-400 text-base md:text-[17px] leading-[1.8] max-w-[560px]">
+          <p className="animate-fade-in-up delay-200 mt-8 text-slate-300 text-base md:text-[17px] leading-[1.8] max-w-[560px]">
             {HERO.body}
           </p>
 
@@ -89,7 +166,7 @@ export default function Hero() {
                   <p className="text-white text-[34px] font-extrabold tracking-tight tabular-nums leading-none">
                     {stat.value}
                   </p>
-                  <p className="text-slate-500 text-[11px] mt-2.5 font-medium tracking-[0.1em] uppercase">
+                  <p className="text-slate-400 text-[11px] mt-2.5 font-medium tracking-[0.1em] uppercase">
                     {stat.label}
                   </p>
                 </div>

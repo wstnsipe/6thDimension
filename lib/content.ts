@@ -8,14 +8,14 @@ export const NAV = {
   brand: '6TH DIMENSION',
   brandSub: 'Inc.',
   links: [
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Who We Are', href: '#about' },
-    { label: 'Products', href: '#products' },
+    { label: 'Capabilities', href: '/capabilities' },
+    { label: 'Who We Are', href: '/about' },
+    { label: 'Products', href: '/products' },
     { label: 'Contracts', href: '#contracts' },
     { label: 'News', href: '#news' },
-    { label: 'Careers', href: '#careers' },
+    { label: 'Careers', href: '/careers' },
   ],
-  cta: { label: 'Contact Us', href: '#contact' },
+  cta: { label: 'Contact Us', href: '/contact' },
 }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
@@ -27,8 +27,8 @@ export const HERO = {
     'That Matter.',
   ],
   body: '6th Dimension delivers modeling, simulation, and software architecture solutions for Army Aviation, DoD programs, and government agencies.',
-  primaryCta: { label: 'See Our Capabilities', href: '#capabilities' },
-  secondaryCta: { label: 'View Our Products', href: '#products' },
+  primaryCta: { label: 'See Our Capabilities', href: '/capabilities' },
+  secondaryCta: { label: 'View Our Products', href: '/products' },
 }
 
 // ─── Credibility Bar ──────────────────────────────────────────────────────────
@@ -48,7 +48,7 @@ export const CAPABILITIES = {
   headline: 'Specialized Capabilities for Critical Programs',
   subheadline:
     'Software and engineering solutions for the programs that cannot afford to get it wrong.',
-  cta: { label: 'Explore Full Capabilities', href: '#capabilities' },
+  cta: { label: 'Explore Full Capabilities', href: '/capabilities' },
   items: [
     {
       icon: 'radar' as const,
@@ -135,7 +135,7 @@ export const PRODUCT = {
     'Ground-Based Sense & Avoid (GBSAA)',
     'UAS concept prototyping',
   ],
-  cta: { label: 'Learn More About Tellus', href: '#products' },
+  cta: { label: 'Learn More About Tellus', href: '/products' },
   version: 'v1.0',
   status: 'Approaching Initial Release',
   deployedAt: 'Air Force Research Labs',
@@ -149,18 +149,37 @@ export const LEADERSHIP = {
   bio: '25+ years of leadership in simulation software development across Army Aviation, Air Force programs, and NASA. Scott founded 6th Dimension around a simple conviction: the gap between great engineering and great execution is process. He brings hands-on technical depth to every client engagement.',
   quote:
     '"We build software the way engineers think — architecture first, shortcuts never."',
-  cta: { label: 'Meet the Team', href: '#about' },
+  cta: { label: 'Meet the Team', href: '/about' },
   initials: 'SWB',
   // REPLACE: Set imageSrc to a real photo path e.g. "/images/scott-brown.jpg"
   imageSrc: null as string | null,
 }
 
-// ─── Careers Strip ────────────────────────────────────────────────────────────
+// ─── Careers ──────────────────────────────────────────────────────────────────
 export const CAREERS = {
   eyebrow: 'Join the Team',
   headline: 'Work Where the Problems Are Hard',
   body: 'We\'re looking for engineers and architects who want to build things that matter in the defense and simulation space. At 6th Dimension, you work directly on programs — not on slides about programs.',
-  cta: { label: 'View Open Positions', href: '#careers' },
+  cta: { label: 'View Open Positions', href: '/careers' },
+  values: [
+    {
+      title: 'Work on Real Programs',
+      description:
+        'No internal tooling projects. You work directly on defense and government programs that have real-world impact.',
+    },
+    {
+      title: 'Architecture First',
+      description:
+        'We build software the right way — architecture-first, with a long-term focus on quality over shortcuts.',
+    },
+    {
+      title: 'Small Team, High Ownership',
+      description:
+        'Our lean team means your contributions are visible and meaningful. You own your work end to end.',
+    },
+  ],
+  openPositionsNote:
+    'We hire for quality and fit. No open positions are listed right now — but if you\'re a strong engineer who wants to work in defense simulation, reach out directly.',
 }
 
 // ─── Contact ──────────────────────────────────────────────────────────────────
@@ -181,12 +200,12 @@ export const FOOTER = {
   brand: '6TH DIMENSION',
   tagline: 'Defense simulation and software engineering — Huntsville, AL.',
   links: [
-    { label: 'Capabilities', href: '#capabilities' },
-    { label: 'Who We Are', href: '#about' },
-    { label: 'Products', href: '#products' },
+    { label: 'Capabilities', href: '/capabilities' },
+    { label: 'Who We Are', href: '/about' },
+    { label: 'Products', href: '/products' },
     { label: 'Contracts', href: '#contracts' },
     { label: 'News', href: '#news' },
-    { label: 'Careers', href: '#careers' },
+    { label: 'Careers', href: '/careers' },
   ],
   contact: {
     phone: '(256) 652-6735',

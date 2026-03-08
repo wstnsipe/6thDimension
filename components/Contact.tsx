@@ -10,7 +10,12 @@ const inputClass =
 const labelClass =
   'block text-[11px] font-semibold text-slate-400 tracking-[0.15em] uppercase mb-2'
 
-export default function Contact() {
+interface ContactProps {
+  /** Pass true on the /contact page — PageHero already shows the header */
+  hideHeader?: boolean
+}
+
+export default function Contact({ hideHeader = false }: ContactProps) {
   const [form, setForm] = useState({ name: '', email: '', org: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
 
@@ -33,11 +38,15 @@ export default function Contact() {
 
           {/* Left: Contact info */}
           <div>
-            <div className="eyebrow">{CONTACT.eyebrow}</div>
-            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-900 leading-tight mt-0 mb-5">
-              {CONTACT.headline}
-            </h2>
-            <p className="text-slate-500 text-[15px] leading-[1.8] mb-10 max-w-sm">
+            {!hideHeader && (
+              <>
+                <div className="eyebrow">{CONTACT.eyebrow}</div>
+                <h2 className="text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-900 leading-tight mt-0 mb-5">
+                  {CONTACT.headline}
+                </h2>
+              </>
+            )}
+            <p className={`text-slate-500 text-[15px] leading-[1.8] mb-10 max-w-sm ${hideHeader ? '' : ''}`}>
               {CONTACT.body}
             </p>
 

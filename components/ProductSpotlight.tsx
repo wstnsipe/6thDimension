@@ -3,13 +3,18 @@ import { ArrowRight, Check, Layers } from 'lucide-react'
 import { PRODUCT } from '@/lib/content'
 
 const statusLines = [
-  { label: 'Plugin Runtime', status: 'CONNECTED', dot: 'bg-emerald-400', color: 'text-emerald-400' },
-  { label: 'Visualization Engine', status: 'ACTIVE', dot: 'bg-emerald-400', color: 'text-emerald-400' },
-  { label: 'SOA Bus', status: 'NOMINAL', dot: 'bg-emerald-400', color: 'text-emerald-400' },
-  { label: 'MUM-T Interface', status: 'STANDBY', dot: 'bg-yellow-400', color: 'text-yellow-400' },
+  { label: 'Plugin Runtime',      status: 'CONNECTED', dot: 'bg-emerald-400', color: 'text-emerald-400' },
+  { label: 'Visualization Engine', status: 'ACTIVE',    dot: 'bg-emerald-400', color: 'text-emerald-400' },
+  { label: 'SOA Bus',             status: 'NOMINAL',   dot: 'bg-emerald-400', color: 'text-emerald-400' },
+  { label: 'MUM-T Interface',     status: 'STANDBY',   dot: 'bg-yellow-400',  color: 'text-yellow-400'  },
 ]
 
-export default function ProductSpotlight() {
+interface ProductSpotlightProps {
+  /** Pass true on the /products page — PageHero already shows the header */
+  hideHeader?: boolean
+}
+
+export default function ProductSpotlight({ hideHeader = false }: ProductSpotlightProps) {
   return (
     <section id="products" className="bg-white py-24 md:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -17,14 +22,18 @@ export default function ProductSpotlight() {
 
           {/* Left: Text */}
           <div>
-            <div className="eyebrow">{PRODUCT.eyebrow}</div>
-            <h2 className="text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-900 leading-tight mt-0 mb-4">
-              {PRODUCT.headline}
-            </h2>
-            <p className="text-accent font-medium text-[13.5px] mb-5 leading-relaxed">
+            {!hideHeader && (
+              <>
+                <div className="eyebrow">{PRODUCT.eyebrow}</div>
+                <h2 className="text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight text-slate-900 leading-tight mt-0 mb-4">
+                  {PRODUCT.headline}
+                </h2>
+              </>
+            )}
+            <p className={`text-accent font-medium text-[13.5px] leading-relaxed ${hideHeader ? '' : 'mb-5'}`}>
               {PRODUCT.subheadline}
             </p>
-            <p className="text-slate-500 text-[15px] leading-[1.8] mb-8">
+            <p className="text-slate-500 text-[15px] leading-[1.8] mb-8 mt-5">
               {PRODUCT.body}
             </p>
 

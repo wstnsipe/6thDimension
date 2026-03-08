@@ -10,7 +10,12 @@ const credentials = [
   'Simulation & Modeling',
 ]
 
-export default function Leadership() {
+interface LeadershipProps {
+  /** Pass true on the /about page — PageHero already shows the eyebrow */
+  hideEyebrow?: boolean
+}
+
+export default function Leadership({ hideEyebrow = false }: LeadershipProps) {
   return (
     <section id="about" className="bg-navy-900 py-24 md:py-32 relative overflow-hidden">
 
@@ -21,9 +26,11 @@ export default function Leadership() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
 
-        <div className="eyebrow eyebrow-light mb-14">{LEADERSHIP.eyebrow}</div>
+        {!hideEyebrow && (
+          <div className="eyebrow eyebrow-light mb-14">{LEADERSHIP.eyebrow}</div>
+        )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start ${hideEyebrow ? '' : ''}`}>
 
           {/* Left: Photo column */}
           <div className="relative lg:sticky lg:top-28">
