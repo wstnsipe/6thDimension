@@ -58,7 +58,7 @@ export default function ProductSpotlight({ hideHeader = false }: ProductSpotligh
             </Link>
           </div>
 
-          {/* Right: Tellus product window */}
+          {/* Right: Ceres product window */}
           <div className="relative">
             <div className="product-window">
 
@@ -69,7 +69,7 @@ export default function ProductSpotlight({ hideHeader = false }: ProductSpotligh
                 <div className="window-dot bg-green-500/70" />
                 <div className="flex-1 ml-3 h-5 bg-navy-800 rounded-md flex items-center justify-center border border-navy-700/50">
                   <span className="text-[9px] text-navy-500 font-mono tracking-[0.15em]">
-                    tellus.sim.env — runtime active
+                    ceres.sim.env — runtime active
                   </span>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function ProductSpotlight({ hideHeader = false }: ProductSpotligh
                   <Layers className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-base tracking-wider leading-none">TELLUS</p>
+                  <p className="text-white font-bold text-base tracking-wider leading-none">CERES</p>
                   <p className="text-slate-500 text-[11px] font-mono mt-1">{PRODUCT.version} · {PRODUCT.status}</p>
                 </div>
                 <div className="ml-auto">

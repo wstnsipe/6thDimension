@@ -98,9 +98,9 @@ export const PAST_PERFORMANCE = {
   items: [
     {
       client: 'Air Force Research Labs (AFRL)',
-      program: 'Autonomy Research — Tellus Simulation Platform',
+      program: 'Autonomy Research — Ceres Simulation Platform',
       description:
-        'Deployed the Tellus simulation and visualization environment at AFRL to support cutting-edge autonomy research for next-generation aviation systems.',
+        'Deployed the Ceres simulation and visualization environment at AFRL to support cutting-edge autonomy research for next-generation aviation systems.',
       tags: ['Simulation', 'Autonomy', 'AFRL'],
     },
     {
@@ -120,25 +120,69 @@ export const PAST_PERFORMANCE = {
   ],
 }
 
-// ─── Product Spotlight (Tellus) ───────────────────────────────────────────────
+// ─── Product Spotlight (Ceres) ───────────────────────────────────────────────
 export const PRODUCT = {
   eyebrow: 'Our Products',
-  headline: 'Introducing Tellus',
+  headline: 'Introducing Ceres',
   subheadline:
-    'A simulation and visualization environment built on service-oriented architecture — currently deployed at Air Force Research Labs.',
-  body: 'Tellus is a plugin-extensible platform designed for high-fidelity mission environments. It enables rapid integration of new capabilities for UAS, Manned/Unmanned Teaming, and Ground-Based Sense and Avoid applications. Version 1.0 is approaching initial release.',
+    'A configuration-based simulation and visualization platform built on service-oriented architecture — supporting multi-domain defense and government programs.',
+  body: 'Ceres is a plugin-extensible platform designed for high-fidelity mission environments. It integrates multi-source data, real-time visualization, and cloud-based DevSecOps to enable rapid capability integration across UAS, autonomy research, and large-scale digital twin applications.',
   features: [
     'Service-Oriented Architecture (SOA)',
     'Plugin-based extensibility',
     'Real-time visualization',
-    'Manned/Unmanned Teaming (MUM-T)',
-    'Ground-Based Sense & Avoid (GBSAA)',
-    'UAS concept prototyping',
+    'Multi-source data integration',
+    'Cloud-based DevSecOps',
+    'Generative AI + GIS support',
   ],
-  cta: { label: 'Learn More About Tellus', href: '/products' },
+  cta: { label: 'Learn More About Ceres', href: '/products' },
   version: 'v1.0',
   status: 'Approaching Initial Release',
   deployedAt: 'Air Force Research Labs',
+}
+
+// ─── Use Cases (Ceres) ────────────────────────────────────────────────────────
+export const USE_CASES = {
+  eyebrow: 'Use Cases',
+  headline: 'Built for the Problems That Matter',
+  subheadline: 'Ceres is purpose-built for complex, multi-domain applications across defense, government, and critical infrastructure.',
+  items: [
+    {
+      icon: 'bot' as const,
+      title: 'Autonomy AI',
+      description: 'Multi-modal interfaces, sensor modeling, and a configurable platform design for next-generation autonomous systems research.',
+    },
+    {
+      icon: 'globe' as const,
+      title: 'Large Scale Digital Twin',
+      description: 'Real-time scenery generation using AI/ML for data association and high-fidelity environment replication at scale.',
+    },
+    {
+      icon: 'cloud' as const,
+      title: 'Service Architecture',
+      description: 'Cloud-based DevSecOps delivering optimized, secure datasets across distributed systems and programs.',
+    },
+    {
+      icon: 'map-pin' as const,
+      title: 'GIS + Generative AI',
+      description: 'Data collection and curation from disparate geospatial sources for intelligent mapping and domain analysis.',
+    },
+    {
+      icon: 'target' as const,
+      title: 'Mission-Based Training',
+      description: 'Digital Training Environment (DTE) leveraging simulation for realistic, high-fidelity mission preparation.',
+    },
+    {
+      icon: 'layout' as const,
+      title: 'UI/UX Design Tools',
+      description: 'Integrates intuitive modeling tools with advanced data linking for streamlined operator workflows.',
+    },
+    {
+      icon: 'compass' as const,
+      title: 'Transportation, Energy, Environment & Mapping',
+      description: 'Domain-specific simulation and visualization across critical infrastructure sectors.',
+    },
+  ],
 }
 
 // ─── Leadership ───────────────────────────────────────────────────────────────
