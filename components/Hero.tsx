@@ -68,11 +68,16 @@ export default function Hero() {
         </div>
       ))}
 
-      {/* ── Dark overlay — keeps text legible over any photo ─────────── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-navy-900/68"
-      />
+      {/* ── Overlay stack — layered so text is always legible ───────── */}
+
+      {/* 1. Base: uniform darkening across the full image */}
+      <div aria-hidden="true" className="absolute inset-0 bg-navy-900/60" />
+
+      {/* 2. Left-side gradient: extra contrast behind the text block */}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-navy-900/75 via-navy-900/30 to-transparent" />
+
+      {/* 3. Top vignette: keeps nav links readable over any image brightness */}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-navy-900/70 via-transparent to-transparent" />
 
       {/* ── Decorative layers (grid + blue accent glow) ──────────────── */}
       <div aria-hidden="true" className="absolute inset-0 hero-grid opacity-20 pointer-events-none" />
@@ -129,7 +134,7 @@ export default function Hero() {
           </h1>
 
           {/* Body copy */}
-          <p className="animate-fade-in-up delay-200 mt-8 text-slate-300 text-base md:text-[17px] leading-[1.8] max-w-[560px]">
+          <p className="animate-fade-in-up delay-200 mt-8 text-slate-200 text-base md:text-[17px] leading-[1.8] max-w-[560px] [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
             {HERO.body}
           </p>
 
